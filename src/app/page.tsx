@@ -4,24 +4,9 @@ import { motion } from "framer-motion";
 import { FaGithub, FaLinkedin, FaEnvelope, FaHeart } from "react-icons/fa";
 import Image from "next/image";
 import mePng from "@/assets/IMG_3569.jpg";
-import confetti from "canvas-confetti";
+import LikeButton from "@/components/LikeButton";
 
 export default function Home() {
-  const fireConfetti = () => {
-    confetti({
-      particleCount: 100,
-      spread: 70,
-      origin: { y: 0.6 },
-      colors: [
-        "#ff0a54",
-        "#ff477e",
-        "#ff7096",
-        "#ff85a1",
-        "#fbb1bd",
-        "#f9bec7",
-      ],
-    });
-  };
   return (
     <div className="min-h-screen bg-gradient-to-br from-pink-200 via-purple-200 to-indigo-200">
       <div className="container mx-auto px-4 py-16">
@@ -49,8 +34,8 @@ export default function Home() {
               height={160}
               className="rounded-full object-cover border-4 border-pink-300 shadow-lg"
             />
-            <FaHeart className="absolute -top-2 -right-2 text-pink-400 text-4xl animate-ping" />
-            <FaHeart className="absolute -top-2 -right-2 text-pink-400 text-4xl" />
+            <FaHeart className="absolute -top-2 -right-2 text-pink-400 text-3xl animate-ping" />
+            <FaHeart className="absolute -top-2 -right-2 text-pink-400 text-3xl" />
           </motion.div>
           <motion.h1
             className="text-4xl font-bold text-center text-purple-600 mb-2"
@@ -104,10 +89,12 @@ export default function Home() {
             className="block w-full bg-gradient-to-r from-pink-400 to-purple-500 text-white font-semibold py-3 px-6 rounded-full hover:from-pink-500 hover:to-purple-600 transition-colors"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            onClick={fireConfetti}
           >
             私の冒険を覗いてみる！ 🎉
           </motion.button>
+          <div className="flex justify-center mt-4">
+            <LikeButton />
+          </div>
         </motion.div>
       </div>
     </div>

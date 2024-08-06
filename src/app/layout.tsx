@@ -1,8 +1,9 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
+import { UserIpAndOtherInfo } from "@/components/UserReqInfoProvider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -44,13 +45,15 @@ export const metadata: Metadata = {
     "テクノロジー",
     "ウェブ開発",
   ],
-  colorScheme: "light",
-  themeColor: "#f9a8d4",
   icons: {
     icon: "/favicon.ico",
   },
 };
 
+export const viewport: Viewport = {
+  themeColor: "#f9a8d4",
+  colorScheme: "light",
+};
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -59,8 +62,9 @@ export default function RootLayout({
   return (
     <html lang="ja">
       <body className={inter.className}>
-        <SpeedInsights /> <Analytics />
-        {children}
+        <SpeedInsights />
+        <Analytics />
+        <UserIpAndOtherInfo>{children}</UserIpAndOtherInfo>
       </body>
     </html>
   );

@@ -1,0 +1,180 @@
+{
+  "id": "383b6b82-23f5-4c7f-87b5-762ac23cc69b",
+  "prevId": "00000000-0000-0000-0000-000000000000",
+  "version": "7",
+  "dialect": "postgresql",
+  "tables": {
+    "public.all_likes_count": {
+      "name": "all_likes_count",
+      "schema": "",
+      "columns": {
+        "count": {
+          "name": "count",
+          "type": "integer",
+          "primaryKey": true,
+          "notNull": true,
+          "default": 0
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {}
+    },
+    "public.device_fingerprint": {
+      "name": "device_fingerprint",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "text",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "screen_width": {
+          "name": "screen_width",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "screen_height": {
+          "name": "screen_height",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "screen_color_depth": {
+          "name": "screen_color_depth",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "screen_pixel_ratio": {
+          "name": "screen_pixel_ratio",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "cpu_hardware_concurrency": {
+          "name": "cpu_hardware_concurrency",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "device_memory": {
+          "name": "device_memory",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "os_platform": {
+          "name": "os_platform",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "browser_language": {
+          "name": "browser_language",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "timezone": {
+          "name": "timezone",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "max_touch_points": {
+          "name": "max_touch_points",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "webgl_vendor": {
+          "name": "webgl_vendor",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "webgl_renderer": {
+          "name": "webgl_renderer",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "audio_fingerprint": {
+          "name": "audio_fingerprint",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "fonts": {
+          "name": "fonts",
+          "type": "text[]",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "has_battery": {
+          "name": "has_battery",
+          "type": "boolean",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "user_agent": {
+          "name": "user_agent",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "ip": {
+          "name": "ip",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "ip_country": {
+          "name": "ip_country",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {}
+    },
+    "public.real_like_device": {
+      "name": "real_like_device",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "text",
+          "primaryKey": true,
+          "notNull": true
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {}
+    }
+  },
+  "enums": {},
+  "schemas": {},
+  "sequences": {},
+  "_meta": {
+    "columns": {},
+    "schemas": {},
+    "tables": {}
+  }
+}
