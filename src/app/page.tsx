@@ -3,7 +3,7 @@ import React from "react";
 import { motion } from "framer-motion";
 import { FaGithub, FaLinkedin, FaEnvelope, FaHeart } from "react-icons/fa";
 import Image from "next/image";
-import mePng from "@/assets/IMG_2781.jpg";
+import mePng from "@/assets/IMG_3569.jpg";
 import confetti from "canvas-confetti";
 
 export default function Home() {
@@ -49,6 +49,7 @@ export default function Home() {
               height={160}
               className="rounded-full object-cover border-4 border-pink-300 shadow-lg"
             />
+            <FaHeart className="absolute -top-2 -right-2 text-pink-400 text-4xl animate-ping" />
             <FaHeart className="absolute -top-2 -right-2 text-pink-400 text-4xl" />
           </motion.div>
           <motion.h1
