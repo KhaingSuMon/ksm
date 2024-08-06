@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import { motion } from "framer-motion";
-import { FaGithub, FaLinkedin, FaEnvelope, FaHeart } from "react-icons/fa";
+import { FaGithub, FaFacebook, FaEnvelope, FaHeart } from "react-icons/fa";
 import Image from "next/image";
 import mePng from "@/assets/IMG_3569.jpg";
 import LikeButton from "@/components/LikeButton";
@@ -59,19 +59,32 @@ export default function Home() {
             animate={{ opacity: 1 }}
             transition={{ delay: 0.9 }}
           >
-            {["github", "linkedin", "envelope"].map((icon, index) => (
-              <motion.a
-                key={icon}
-                href="#"
-                className="text-pink-500 hover:text-purple-500 transition-colors"
-                whileHover={{ scale: 1.2, rotate: 10 }}
-                whileTap={{ scale: 0.9 }}
-              >
-                {icon === "github" && <FaGithub size={28} />}
-                {icon === "linkedin" && <FaLinkedin size={28} />}
-                {icon === "envelope" && <FaEnvelope size={28} />}
-              </motion.a>
-            ))}
+            <motion.a
+              href="#"
+              className="text-pink-500 hover:text-purple-500 transition-colors"
+              whileHover={{ scale: 1.2, rotate: 10 }}
+              whileTap={{ scale: 0.9 }}
+            >
+              <FaGithub size={28} />
+            </motion.a>
+            <motion.a
+              href="#"
+              target="_blank"
+              className="text-pink-500 hover:text-purple-500 transition-colors"
+              whileHover={{ scale: 1.2, rotate: 10 }}
+              whileTap={{ scale: 0.9 }}
+            >
+              <FaFacebook size={28} />
+            </motion.a>
+            <motion.a
+              href="mailto:hi@khaingsumon.com"
+              target="_blank"
+              className="text-pink-500 hover:text-purple-500 transition-colors"
+              whileHover={{ scale: 1.2, rotate: 10 }}
+              whileTap={{ scale: 0.9 }}
+            >
+              <FaEnvelope size={28} />
+            </motion.a>
           </motion.div>
           <motion.p
             className="text-gray-600 text-center mb-8"

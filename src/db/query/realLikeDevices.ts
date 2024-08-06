@@ -17,7 +17,6 @@ export const checkRealLikeDeviceExist = async (digestId: string) => {
     .select()
     .from(realLikeDeviceTable)
     .where(eq(realLikeDeviceTable.digestId, digestId));
-  console.log(res, res && res.length > 0);
 
   return res && res.length > 0;
 };

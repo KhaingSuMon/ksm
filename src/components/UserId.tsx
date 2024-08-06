@@ -27,7 +27,6 @@ export const UserId = ({
       try {
         const { digest, info } = await getDeviceInfo();
         const isExist = await checkRealLikeDeviceExist(digest);
-        console.log(isExist);
 
         if (isExist) setDeviceLiked(true);
 
@@ -41,7 +40,6 @@ export const UserId = ({
           setDigestId(res);
         }
         initCount();
-        console.log(reqInfo, info);
       } catch (error) {
         console.log(error);
       }

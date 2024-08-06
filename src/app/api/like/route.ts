@@ -10,7 +10,6 @@ export const POST = (req: NextRequest) => {
     get("x-forwarded-for") ||
     get("remote-addr") ||
     get("cf-connecting-ip");
-  console.log(ua, ip);
 
   return NextResponse.json({ message: "Liked" });
 };
