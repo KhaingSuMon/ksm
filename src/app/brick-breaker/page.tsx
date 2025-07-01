@@ -18,6 +18,7 @@ export default function BrickBreakerPage() {
     const maxLives = 3;
     let lives = maxLives;
 
+
     const ballRadius = 10;
     let x = canvas.width / 2;
     let y = canvas.height - 30;
@@ -50,6 +51,7 @@ export default function BrickBreakerPage() {
     };
 
     const startRound = () => {
+
       x = canvas.width / 2;
       y = canvas.height - 30;
       dx = 1.5;
@@ -60,12 +62,14 @@ export default function BrickBreakerPage() {
     const resetGame = () => {
       score = 0;
       lives = maxLives;
+
       for (let c = 0; c < brickColumnCount; c++) {
         for (let r = 0; r < brickRowCount; r++) {
           bricks[c][r].status = 1;
         }
       }
       startRound();
+
     };
 
     resetGame();
@@ -98,6 +102,7 @@ export default function BrickBreakerPage() {
     document.addEventListener("keydown", keyDownHandler);
     document.addEventListener("keyup", keyUpHandler);
     canvas.addEventListener("pointermove", pointerMoveHandler);
+
 
     function collisionDetection() {
       for (let c = 0; c < brickColumnCount; c++) {
@@ -174,6 +179,7 @@ export default function BrickBreakerPage() {
       }
     };
 
+
     const draw = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       drawBricks();
@@ -181,6 +187,7 @@ export default function BrickBreakerPage() {
       drawPaddle();
       drawInfo();
       drawMessage();
+
       collisionDetection();
 
       if (x + dx > canvas.width - ballRadius || x + dx < ballRadius) {
@@ -200,6 +207,7 @@ export default function BrickBreakerPage() {
             showMessage("Game Over");
             resetGame();
           }
+
         }
       }
 
@@ -220,6 +228,7 @@ export default function BrickBreakerPage() {
       document.removeEventListener("keydown", keyDownHandler);
       document.removeEventListener("keyup", keyUpHandler);
       canvas.removeEventListener("pointermove", pointerMoveHandler);
+
     };
   }, []);
 
