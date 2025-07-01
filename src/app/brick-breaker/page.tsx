@@ -17,8 +17,8 @@ export default function BrickBreakerPage() {
     const ballRadius = 10;
     let x = canvas.width / 2;
     let y = canvas.height - 30;
-    let dx = 2;
-    let dy = -2;
+    let dx = 1.5;
+    let dy = -1.5;
 
     const brickRowCount = 5;
     const brickColumnCount = 3;
@@ -35,6 +35,21 @@ export default function BrickBreakerPage() {
         bricks[c][r] = { x: 0, y: 0, status: 1 };
       }
     }
+
+    const resetGame = () => {
+      x = canvas.width / 2;
+      y = canvas.height - 30;
+      dx = 1.5;
+      dy = -1.5;
+      paddleX = (canvas.width - paddleWidth) / 2;
+      for (let c = 0; c < brickColumnCount; c++) {
+        for (let r = 0; r < brickRowCount; r++) {
+          bricks[c][r].status = 1;
+        }
+      }
+    };
+
+    resetGame();
 
     let rightPressed = false;
     let leftPressed = false;
@@ -127,7 +142,7 @@ export default function BrickBreakerPage() {
         if (x > paddleX && x < paddleX + paddleWidth) {
           dy = -dy;
         } else {
-          document.location.reload();
+          resetGame();
         }
       }
 
