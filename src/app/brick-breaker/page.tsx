@@ -20,6 +20,7 @@ export default function BrickBreakerPage() {
     let dx = 1.5;
     let dy = -1.5;
 
+
     const brickRowCount = 5;
     const brickColumnCount = 3;
     const brickWidth = 75;
@@ -50,6 +51,7 @@ export default function BrickBreakerPage() {
     };
 
     resetGame();
+
 
     let rightPressed = false;
     let leftPressed = false;
