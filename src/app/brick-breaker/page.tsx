@@ -14,12 +14,16 @@ export default function BrickBreakerPage() {
     const paddleWidth = 75;
     let paddleX = (canvas.width - paddleWidth) / 2;
 
+    let score = 0;
+    const maxLives = 3;
+    let lives = maxLives;
+
+
     const ballRadius = 10;
     let x = canvas.width / 2;
     let y = canvas.height - 30;
     let dx = 1.5;
     let dy = -1.5;
-
 
     const brickRowCount = 5;
     const brickColumnCount = 3;
@@ -36,22 +40,39 @@ export default function BrickBreakerPage() {
         bricks[c][r] = { x: 0, y: 0, status: 1 };
       }
     }
+    const totalBricks = brickRowCount * brickColumnCount;
 
-    const resetGame = () => {
+    let message = "";
+    let messageTimer = 0;
+
+    const showMessage = (m: string) => {
+      message = m;
+      messageTimer = Date.now() + 2000;
+    };
+
+    const startRound = () => {
+
       x = canvas.width / 2;
       y = canvas.height - 30;
       dx = 1.5;
       dy = -1.5;
       paddleX = (canvas.width - paddleWidth) / 2;
+    };
+
+    const resetGame = () => {
+      score = 0;
+      lives = maxLives;
+
       for (let c = 0; c < brickColumnCount; c++) {
         for (let r = 0; r < brickRowCount; r++) {
           bricks[c][r].status = 1;
         }
       }
+      startRound();
+
     };
 
     resetGame();
-
 
     let rightPressed = false;
     let leftPressed = false;
@@ -72,8 +93,16 @@ export default function BrickBreakerPage() {
       }
     };
 
+    const pointerMoveHandler = (e: PointerEvent) => {
+      const rect = canvas.getBoundingClientRect();
+      paddleX = e.clientX - rect.left - paddleWidth / 2;
+      paddleX = Math.max(0, Math.min(canvas.width - paddleWidth, paddleX));
+    };
+
     document.addEventListener("keydown", keyDownHandler);
     document.addEventListener("keyup", keyUpHandler);
+    canvas.addEventListener("pointermove", pointerMoveHandler);
+
 
     function collisionDetection() {
       for (let c = 0; c < brickColumnCount; c++) {
@@ -88,6 +117,11 @@ export default function BrickBreakerPage() {
             ) {
               dy = -dy;
               b.status = 0;
+              score += 1;
+              if (score === totalBricks) {
+                showMessage("You Win!");
+                resetGame();
+              }
             }
           }
         }
@@ -128,11 +162,32 @@ export default function BrickBreakerPage() {
       }
     };
 
+    const drawInfo = () => {
+      ctx.font = "16px sans-serif";
+      ctx.fillStyle = "#4c1d95";
+      ctx.textAlign = "left";
+      ctx.fillText(`Score: ${score}`, 8, 20);
+      ctx.fillText(`Lives: ${lives}`, canvas.width - 80, 20);
+    };
+
+    const drawMessage = () => {
+      if (message && Date.now() < messageTimer) {
+        ctx.font = "20px sans-serif";
+        ctx.fillStyle = "#b91c1c";
+        ctx.textAlign = "center";
+        ctx.fillText(message, canvas.width / 2, canvas.height / 2);
+      }
+    };
+
+
     const draw = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       drawBricks();
       drawBall();
       drawPaddle();
+      drawInfo();
+      drawMessage();
+
       collisionDetection();
 
       if (x + dx > canvas.width - ballRadius || x + dx < ballRadius) {
@@ -142,9 +197,17 @@ export default function BrickBreakerPage() {
         dy = -dy;
       } else if (y + dy > canvas.height - ballRadius) {
         if (x > paddleX && x < paddleX + paddleWidth) {
-          dy = -dy;
+          dx = (x - (paddleX + paddleWidth / 2)) * 0.15;
+          dy = -Math.abs(dy);
         } else {
-          resetGame();
+          lives -= 1;
+          if (lives > 0) {
+            startRound();
+          } else {
+            showMessage("Game Over");
+            resetGame();
+          }
+
         }
       }
 
@@ -164,6 +227,8 @@ export default function BrickBreakerPage() {
     return () => {
       document.removeEventListener("keydown", keyDownHandler);
       document.removeEventListener("keyup", keyUpHandler);
+      canvas.removeEventListener("pointermove", pointerMoveHandler);
+
     };
   }, []);
 
